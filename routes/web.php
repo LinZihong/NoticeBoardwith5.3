@@ -26,8 +26,8 @@ Route::get('/about', function () {
 });
 // @TODO 关于我们界面
 
-Route::get('/intl/{ticket}', function($ticket){
-	return redirect('/vote/ticket/'.$ticket);
+Route::get('/intl/{ticket}', function ($ticket) {
+	return redirect('/vote/ticket/' . $ticket);
 });
 
 // ** 访客区域 **
@@ -41,7 +41,7 @@ Route::group(['prefix' => 'vote'], function () {
 		Route::get('/ticket/{ticket}', 'VoteController@showVoteGroup')->where(['ticket' => '[a-z0-9]+']);
 		// 访客 Ticket 认证结束
 	});
-  
+
 	Route::group(['middleware' => 'vote_result'], function () {
 		// 投票结果处理
 		Route::get('/id/{id}/ticket/{ticket}/result', 'VoteController@showVoteResult')->where(['id' => '[0-9]+', 'ticket' => '[a-z0-9]+']);
@@ -92,6 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
 		});
 		Route::post('/post/{id}', 'PostController@getReply')->where(['id' => '[0-9]+']);
 		Route::post('/post', 'PostController@createNewPost');
+
 	});
 });
 
@@ -107,8 +108,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 		Route::get('/ticket/status','Admin\VoteController@checkStatus');
 		Route::post('/ticket/status','Admin\VoteController@searchTicket');
 		Route::get('/ticket/toggle/{id}','Admin\VoteController@toggleTicketStatus');
-		Route::get('/ticket/activate/all','Admin\VoteController@activateAllTicket');
+		Route::get('/ticket/activate/{noneOrAll}','Admin\VoteController@toggleAllTickets');
 		Route::get('/ticket/clearallvote/{id}','Admin\VoteController@clearVoteRecord');
+		Route::post('/ticket/toggle/with/range','Admin\VoteController@toggleTicketStatusWithRange');
 	});
 
 });
