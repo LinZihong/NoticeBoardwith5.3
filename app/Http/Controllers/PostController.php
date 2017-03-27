@@ -106,13 +106,13 @@ class PostController extends Controller
 			return redirect()->back()->withErrors($errors)->withInput();  // When Validator fails, return errors
 		}
 		if (Post::create([
-			'user_id'   => $this->user->id,
+			'user_id'   => $this->user->id,//@TODO Can this really be placed in create method???/This is Mass Assignment
 			'title'     => $request['title'],
 			'content'   => clean($request['content']),
 			'is_public' => $request['is_public'],
 			// 'is_hidden' =
 			// @TODO 权限判断
-		])
+		])//Maybe use create($request->all()) instead
 		) {
 			return redirect()->back()->withMessage('成功');
 		}
