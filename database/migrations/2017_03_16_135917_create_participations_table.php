@@ -21,6 +21,7 @@ class CreateParticipationsTable extends Migration
             $table->integer('user_id');
             $table->integer('checker_id')->nullable();
             $table->integer('duration');//use minutes
+            $table->string('status');//pending, approved, participated
             $table->timestamp();
         })
     }

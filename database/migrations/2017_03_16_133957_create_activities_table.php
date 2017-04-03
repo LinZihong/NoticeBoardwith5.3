@@ -18,11 +18,14 @@ class CreateActivitiesTable extends Migration
 		{
 			$table->increments('id');
 			$table->integer('creator_id');
+			$table->string('creator_type');//individual or club
 			$table->integer('club_id')->nullable();
 			$table->string('title');
 			$table->string('intro');
 			$table->integer('duration');//use minutes
-			$table->date('start_day');
+			$table->date('reg_start');
+			$table->date('reg_end');
+			$table->string('verified_by')->nullable();
 			$table->timestamp();
 		})
     }
