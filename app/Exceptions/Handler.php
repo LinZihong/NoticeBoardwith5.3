@@ -5,8 +5,6 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Lang;
 
 class Handler extends ExceptionHandler
 {
@@ -37,6 +35,7 @@ class Handler extends ExceptionHandler
 		parent::report($exception);
 	}
 
+
 	/**
 	 * Render an exception into an HTTP response.
 	 *
@@ -46,19 +45,22 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		if ($exception instanceof ModelNotFoundException){
+		if ($exception instanceof ModelNotFoundException) {
 			switch ($exception->getModel()) {
 				case "App\Ticket":
-					abort(404,Lang::get('vote.ticket_not_found'));
+					abort(404, trans('vote.ticket_not_found'));
 					break;
 				case "App\Vote":
-					abort(404,Lang::get('vote.vote_no_found'));
+					abort(404, trans('vote.vote_no_found'));
 					break;
+				case "App\Post":
+					abort(404, trans('post.post_no_found'));
 				default:
-					abort(404,$exception);
+					abort(404);
 					break;
 			}
 		}
+
 		return parent::render($request, $exception);
 	}
 
@@ -75,6 +77,6 @@ class Handler extends ExceptionHandler
 			return response()->json(['error' => 'Unauthenticated.'], 401);
 		}
 
-		return redirect()->guest('login');
+		return redirect()->guest(route('login'));
 	}
 }

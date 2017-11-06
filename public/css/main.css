@@ -83,6 +83,9 @@ body {
 	background: #000;
 	opacity: 0.9;
 }
+.side-nav {
+	overflow-x: hidden;
+}
 
 .nb-logo {
 	height: 4rem;
@@ -209,6 +212,14 @@ nav {
 .post-card .card-image .circle {
 	padding: 10px;
 	width: 5rem;
+	height:5rem;
+	border-radius: 50%;
+}
+
+.article-card .card-image .circle {
+	padding: 10px;
+	width: 8rem;
+	height:8rem;
 	border-radius: 50%;
 }
 
@@ -266,7 +277,8 @@ nav {
 }
 
 .post-comment-card .circle {
-	width: 4rem!important;
+	width: 4.5rem !important;
+	height: 4.5rem !important;
 }
 
 /*Article Cards*/
@@ -314,9 +326,8 @@ nav {
 
 .article-card-text {
 	line-height: 2;
-	font-size: 1.25rem;
 	font-weight: 300;
-	max-width: 42.5rem;
+	max-width: 50rem;
 	margin: auto!important;
 }
 /*Comment Card*/
@@ -387,5 +398,25 @@ nav {
  */
 .error-card{
 	padding: 4rem;
-	opacity: 0.9;
+}
+
+/**
+ * User info complesion styles
+ */
+.user-info-completion {
+	padding: 2rem;
+	padding-bottom: 0;
+	opacity: 0.95;
+}
+
+.user-info-completion .card-content {
+	max-height: none !important;
+}
+
+.user-info-completion .card-content input {
+	margin-bottom:0;
+}
+
+.user-info-completion .card-content .input-field {
+	margin-bottom: 3.5rem;
 }

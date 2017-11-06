@@ -18,10 +18,17 @@ class AppServiceProvider extends ServiceProvider
 		Relation::morphMap([
 			'user' => \App\User::class,
 			'ticket' => \App\Ticket::class,
-		    'post' => \App\Post::class,
-		    'comment' => \App\Comment::class,
+			'post' => \App\Post::class,
+			'comment' => \App\Comment::class,
+
 		]);
+
+		// IDE helper
+		if ($this->app->environment() !== 'production') {
+			$this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+		}
 	}
+
 
 	/**
 	 * Register any application services.
@@ -31,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
 	public function register()
 	{
 		//
+
 	}
 }
