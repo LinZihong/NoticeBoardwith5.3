@@ -96,7 +96,8 @@
             console.log($(this).attr('id')+'-'+$(this).is(':checked'));
             var data = {
                 option_id: $(this).attr('id'),
-                status: $(this).is(':checked')
+                status: $(this).is(':checked'),
+                time: getTime()
             };
             $.ajax({
                 url: '{{ $ticket }}/qr_cache',

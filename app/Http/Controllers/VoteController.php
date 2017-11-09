@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 
 use App\Events\UpdateModelIPAddress;
+use App\OptionCache;
 use Illuminate\Http\Response;
 use App\VoteGroup;
 use Illuminate\Http\Request;
@@ -120,7 +121,27 @@ class VoteController extends Controller
 
 	public function cacheOptions(Request $request)
     {
-        return $request->option_id;
+        $option = $request->option_id;
+        $status = $request->status;
+        $time = $request->time;
+        $ticket = $request->ticket;
+        if(empty($cached = OptionCache::where('option', $option)->where('ticket', $ticket)->first()))
+        {
+            OptionCache::create([
+                'option' => $option,
+                'status' => $status,
+                'ticket' => $ticket,
+                'update_time' => $time
+            ]);
+            return 'Saved!';
+        }
+        else if($time > $cached->update_time)
+        {
+            $cached->update_time = $time;
+            $cached->status = $status;
+            $cached->save();
+        }
+        return 'Cached!';
     }
 
 	/**

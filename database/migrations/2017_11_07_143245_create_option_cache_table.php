@@ -14,6 +14,14 @@ class CreateOptionCacheTable extends Migration
     public function up()
     {
         //
+        Schema::create('option_caches', function (Blueprint $table) {
+           $table->increments('id');
+           $table->string('option');
+           $table->string('status');
+           $table->string('ticket');
+           $table->timestamps();
+           $table->bigInteger('update_time');//device time
+        });
     }
 
     /**
