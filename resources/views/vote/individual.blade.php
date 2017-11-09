@@ -90,4 +90,21 @@
 
 @section('script')
     <script type="text/javascript" src="/js/vote.js"></script>
+    <script>
+        {{--console.log('{{Request::path()}}')--}}
+        $('input').on('click', function() {
+            console.log($(this).attr('id')+'-'+$(this).is(':checked'));
+            var data = {
+                option_id: $(this).attr('id'),
+                status: $(this).is(':checked')
+            };
+            $.ajax({
+                url: '{{ $ticket }}/qr_cache',
+                data: data,
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        });
+    </script>
 @endsection

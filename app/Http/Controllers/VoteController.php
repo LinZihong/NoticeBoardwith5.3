@@ -60,7 +60,7 @@ class VoteController extends Controller
 	{
 		$id = $request->id;
 
-		return view('vote.individual')->withVote(Vote::find($id)->with('questions', 'questions.options')->first()); //Else show vote page
+		return view('vote.individual')->withVote(Vote::find($id)->with('questions', 'questions.options')->first())->withTicket($request->ticket); //Else show vote page
 	}
 
 	/**
@@ -118,6 +118,11 @@ class VoteController extends Controller
 		}
 	}
 
+	public function cacheOptions(Request $request)
+    {
+        return $request->option_id;
+    }
+
 	/**
 	 * Show Vote Result :)
 	 *
@@ -127,8 +132,7 @@ class VoteController extends Controller
 	public function showVoteResult(request $request)
 	{
 		$voteId = $request->id;
-
-		return view('vote.result')->withVote(Vote::Id($voteId));
+		return view('vote.result')->with('vote',Vote::Id($voteId));
 	}
 
 	/**
