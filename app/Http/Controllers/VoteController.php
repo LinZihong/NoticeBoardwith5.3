@@ -144,6 +144,11 @@ class VoteController extends Controller
         return 'Cached!';
     }
 
+    public function getCachedOptions(Request $request)
+    {
+        return OptionCache::where('ticket', $request->ticket)->get();
+    }
+
 	/**
 	 * Show Vote Result :)
 	 *

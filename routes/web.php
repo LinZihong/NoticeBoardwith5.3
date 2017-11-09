@@ -52,6 +52,7 @@ Route::group(['prefix' => 'vote'], function () {
 		Route::get('/id/{id}/ticket/{ticket}', 'VoteController@showIndividualVote')->where(['id' => '[0-9]+', 'ticket' => '[a-z0-9]+']);
 		Route::post('/id/{id}/ticket/{ticket}', 'VoteController@voteHandler')->where(['id' => '[0-9]+', 'ticket' => '[a-z0-9]+']);
 		Route::get('id/{id}/ticket/{ticket}/qr_cache', 'VoteController@cacheOptions')->where(['id' => '[0-9]+', 'ticket' => '[a-z0-9]+']);
+        Route::get('id/{id}/ticket/{ticket}/get_qr_cache', 'VoteController@getCachedOptions')->where(['id' => '[0-9]+', 'ticket' => '[a-z0-9]+']);
 		// 投票处理结束
 	});
 

@@ -91,7 +91,20 @@
 @section('script')
     <script type="text/javascript" src="/js/vote.js"></script>
     <script>
-        {{--console.log('{{Request::path()}}')--}}
+//        document.onload = function() {
+            $.ajax({
+                url: '{{ $ticket }}/get_qr_cache',
+                success: function(res) {
+                    console.log(res);
+                    for(var i=0; i<res.length; i++)
+                    {
+                        if(res[i].status == 'true') {
+                            $('#' + res[i].option).prop('checked', res[i].status);
+                        }
+                    }
+                }
+            })
+//        }
         $('input').on('click', function() {
             console.log($(this).attr('id')+'-'+$(this).is(':checked'));
             var data = {
