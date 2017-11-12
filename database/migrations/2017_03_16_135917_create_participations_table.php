@@ -23,7 +23,7 @@ class CreateParticipationsTable extends Migration
             $table->integer('duration');//use minutes
             $table->string('status');//pending, approved, participated
             $table->timestamp();
-        })
+        });
     }
 
     /**
