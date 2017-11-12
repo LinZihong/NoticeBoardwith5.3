@@ -26,7 +26,7 @@ class CreateActivitiesTable extends Migration
 			$table->date('reg_start');
 			$table->date('reg_end');
 			$table->string('verified_by')->nullable();
-			$table->timestamp();
+			$table->timestamps();
 		});
     }
 
