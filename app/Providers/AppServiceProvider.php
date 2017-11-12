@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
 			'comment' => \App\Comment::class,
 
 		]);
+
+        Schema::defaultStringLength(191);
 
 		// IDE helper
 		if ($this->app->environment() !== 'production') {
