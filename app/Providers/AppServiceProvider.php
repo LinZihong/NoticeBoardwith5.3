@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+        Schema::defaultStringLength(191);
+
 		// boot model relationships
 		Relation::morphMap([
 			'user' => \App\User::class,
@@ -23,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
 			'comment' => \App\Comment::class,
 
 		]);
-
-        Schema::defaultStringLength(191);
 
 		// IDE helper
 		if ($this->app->environment() !== 'production') {
