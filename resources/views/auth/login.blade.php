@@ -17,7 +17,7 @@
             </div>
             <div class="row login-form">
                 <form role="form" method="POST" action="{{ url('/login') }}">
-                    {{!! csrf_field() !!}}
+                    {!! csrf_field() !!}
                     <div class="row">
                         <h4 class="col s12 l8 push-l2">Welcome to NoticeBoard.</h4>
                     </div>
