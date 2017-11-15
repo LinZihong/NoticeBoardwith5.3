@@ -83,7 +83,7 @@ class VoteController extends Controller
 		if (!$this->checkIfAllFilled($answers, $vote)) { //并且所有的选项填完了
 			return redirect()->back()->withErrors(['warning' => __('vote.option_left_not_filled')]);
 		}
-		if ($this->checkIfRepeatingOptions($answers) && $this->checkIfOptionsFilledMatch($answers, $vote)) {
+		if ($this->checkIfNoRepeatingOptions($answers) && $this->checkIfOptionsFilledMatch($answers, $vote)) {
 			$voteIsValid = true;
 		}
 		
@@ -164,15 +164,15 @@ class VoteController extends Controller
 	/**
 	 * @param $answers
 	 */
-	private function checkIfRepeatingOptions($answers)
+	private function checkIfNoRepeatingOptions($answers)
 	{
 		$answers = $answers->toArray();
 		$origin = $answers;
 		$answers = array_unique($answers);
 		if (count($origin) == count($answers)) { //答案中没有重复： If two arrays have the same number of values, this means that there is no repetition within answers.
-			return false;
-		} else { //答案中有重复: 如果两个数组的有不同数量的元素，说明array_unique()函数压缩了一些元素，也就是证明答案中有重复。
 			return true;
+		} else { //答案中有重复: 如果两个数组的有不同数量的元素，说明array_unique()函数压缩了一些元素，也就是证明答案中有重复。
+			return false;
 		}
 	}
 
@@ -204,11 +204,17 @@ class VoteController extends Controller
 		$optionsFilled = array_count_values($answers->map(function ($answer) {
 			return Option::Id($answer)->question->id;
 		})->flatten()->toArray());
-		$vote->questions->each(function ($question) use ($optionsFilled) {
-			if ($optionsFilled[$question->id] != $question->range) {
+//		$vote->questions->each(function ($question) use ($optionsFilled) {
+//			if ($optionsFilled[$question->id] != $question->range) {
+//				return false;
+//			} // illegal answers :( # of options for a specific question is not match
+//		}); 垃圾玩意出了啥毛病
+        foreach ($vote->questions as $question)
+        {
+            if ($optionsFilled[$question->id] != $question->range) {
 				return false;
 			} // illegal answers :( # of options for a specific question is not match
-		});
+        }
 		return true;
 	}
 }
