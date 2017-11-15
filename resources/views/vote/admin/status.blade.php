@@ -80,6 +80,7 @@
                         <th data-field="Name">投票记录</th>
                         <th data-field="Name">清空投票</th>
                         <th data-field="Name">激活开关</th>
+                        <th data-field="Name">打印</th>
                     </tr>
                 </thead>
                 
@@ -95,6 +96,9 @@
                         </td>
                         <td>
                             <button class="btn waves-effect waves-light orange no-shadow" onclick="toggle_confirmation({{$ticket->id}}, '/admin/vote/ticket/toggle/')">{{($ticket->active) ? '禁用' : '启用'}}</button>
+                        </td>
+                        <td>
+                            <button class="btn waves-effect waves-light orange no-shadow" onclick="print_ticket({{$ticket->string}})">打印({{$ticket->print_times}})</button>
                         </td>
                     </tr>
                 @endforeach
@@ -128,6 +132,23 @@
         if(confirm("Are you sure to change ticket status?")){
             location.href = url + id;
         }
+    }
+
+    function print_ticket(id, str){
+        html = "<h1 align='center'>VOICE of HFI</h1>\n" +
+            "\t<h4 align='center>C.L.A.P. x HFIProgramming</h3>\n" +
+            "\t<h2 align='center>Voting Ticket</h2>\n" +
+            "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">"
+        $.ajax({
+           url: 'p.hfiprogramming.club/outputPDF',
+           data: {
+               html: html
+           },
+           method: 'POST',
+           success: function(){
+               console.log('printed');
+            }
+        });
     }
 </script>
 @endsection
