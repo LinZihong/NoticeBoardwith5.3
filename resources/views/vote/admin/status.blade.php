@@ -98,7 +98,7 @@
                             <button class="btn waves-effect waves-light orange no-shadow" onclick="toggle_confirmation({{$ticket->id}}, '/admin/vote/ticket/toggle/')">{{($ticket->active) ? '禁用' : '启用'}}</button>
                         </td>
                         <td>
-                            <button class="btn waves-effect waves-light orange no-shadow" onclick="print_ticket({{$ticket->id}},{{$ticket->string}})">打印({{$ticket->print_times}})</button>
+                            <button class="btn waves-effect waves-light orange no-shadow" onclick="print_ticket({{$ticket->id}},\"{{$ticket->string}}\")">打印({{$ticket->print_times}})</button>
                         </td>
                     </tr>
                 @endforeach
@@ -140,7 +140,7 @@
             "\t<h2 align='center>Voting Ticket</h2>\n" +
             "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">"
         $.ajax({
-           url: 'p.hfiprogramming.club/outputPDF',
+           url: 'http://n.hfiprogramming.club/outputPDF',
            data: {
                html: html
            },
