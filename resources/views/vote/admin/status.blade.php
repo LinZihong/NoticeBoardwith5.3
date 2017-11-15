@@ -135,10 +135,10 @@
     }
 
     function print_ticket(id, str){
-        htmlstr = "<h1 align='center'>VOICE of HFI</h1>\n" +
-            "\t<h4 align='center>C.L.A.P. x HFIProgramming</h3>\n" +
-            "\t<h2 align='center>Voting Ticket</h2>\n" +
-            "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">";
+        htmlstr = "<h1 align='center'>VOICE of HFI</h1>" +
+            "<h4 align='center>C.L.A.P. x HFIProgramming</h4>" +
+            "<h2 align='center>Voting Ticket</h2>" +
+            "<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">";
         data = {html: htmlstr};
         $.ajax({
            url: 'http://n.hfiprogramming.club/outputPDF',
