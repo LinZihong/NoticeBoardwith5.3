@@ -37,7 +37,7 @@ Route::group(['prefix' => 'vote'], function () {
 
 	Route::group(['middleware' => 'vote_group'], function () {
 		// 访客 Ticket 验证
-		Route::get('/ticket/{ticket}', 'VoteController@showVoteGroup')->where(['ticket' => '[a-z0-9]+']);
+		Route::get('/ticket/{ticket}', 'VoteController@showVoteGroup');//->where(['ticket' => '[a-z0-9]+']);
 		// 访客 Ticket 认证结束
 	});
 
