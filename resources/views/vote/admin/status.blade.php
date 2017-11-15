@@ -98,7 +98,7 @@
                             <button class="btn waves-effect waves-light orange no-shadow" onclick="toggle_confirmation({{$ticket->id}}, '/admin/vote/ticket/toggle/')">{{($ticket->active) ? '禁用' : '启用'}}</button>
                         </td>
                         <td>
-                            <button class="btn waves-effect waves-light orange no-shadow" onclick="print_ticket({{$ticket->string}})">打印({{$ticket->print_times}})</button>
+                            <button class="btn waves-effect waves-light orange no-shadow" onclick="print_ticket({{$ticket->id}},{{$ticket->string}})">打印({{$ticket->print_times}})</button>
                         </td>
                     </tr>
                 @endforeach
