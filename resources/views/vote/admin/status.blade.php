@@ -135,19 +135,28 @@
     }
 
     function print_ticket(id, str){
-        html = "<h1 align='center'>VOICE of HFI</h1>\n" +
+        htmlstr = "<h1 align='center'>VOICE of HFI</h1>\n" +
             "\t<h4 align='center>C.L.A.P. x HFIProgramming</h3>\n" +
             "\t<h2 align='center>Voting Ticket</h2>\n" +
-            "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">"
+            "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">";
+        data = {html: htmlstr};
+//        chrome.runtime.sendMessage({
+//           url: 'http://n.hfiprogramming.club/outputPDF',
+//           data: {
+//               html: html
+//           },
+//           method: 'POST',
+//           success: function(){
+//               console.log('printed');
+//            }
+//        });
         chrome.runtime.sendMessage({
-           url: 'http://n.hfiprogramming.club/outputPDF',
-           data: {
-               html: html
-           },
-           method: 'POST',
-           success: function(){
-               console.log('printed');
-            }
+            method: 'POST',
+            action: 'xhttp',
+            url: 'http://n.hfiprogramming.club/outputPDF',
+            data: data
+        }, function(responseText) {
+            console.log(responseText);
         });
     }
 </script>
