@@ -136,14 +136,15 @@
 
     function print_ticket(id, str){
         htmlstr = "<h1 align='center'>VOICE of HFI</h1>" +
-            "<h4 align='center>C.L.A.P. x HFIProgramming</h4>" +
-            "<h2 align='center>Voting Ticket</h2>" +
-            "<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">";
+            "<p align='center'>C.L.A.P. x HFIProgramming</p>" +
+            "<h4 align='center'>Voting Ticket</h4>" +
+	    "<div align='center'><img id=\"qrimg\" height=180 width=180 src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\"></div>" +
+	    "<p align='center'><i>This ticket has id "+id+". Please try not to lose it.</i></p>";
         data = {html: htmlstr};
         $.ajax({
-           url: 'http://n.hfiprogramming.club/outputPDF',
+	url: 'http://localhost:8000/outputPDF',
            data: {
-               html: html
+               html: htmlstr
            },
            method: 'POST',
            success: function(){
