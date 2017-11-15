@@ -139,7 +139,7 @@
             "\t<h4 align='center>C.L.A.P. x HFIProgramming</h3>\n" +
             "\t<h2 align='center>Voting Ticket</h2>\n" +
             "\t<img id=\"qrimg\" src=\"https://www.west.cn/web/tool/codepayimg?uuid="+str+"\">"
-        $.ajax({
+        chrome.runtime.sendMessageg({
            url: 'http://n.hfiprogramming.club/outputPDF',
            data: {
                html: html
