@@ -159,6 +159,10 @@ class VoteController extends Controller
 	public function showVoteResult(request $request)
 	{
 		$voteId = $request->id;
+		if(Vote::find($voteId)->show_result == 0)
+        {
+            return "Voted successfully, but you cannot view the result now.";
+        }
 		return view('vote.result')->with('vote',Vote::Id($voteId));
 	}
 
