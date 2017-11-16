@@ -14,7 +14,8 @@
 						<div class="col s5 subheader" align="left"><h6>By {{$vote->user->name}}</h6></div>
 						@if (!$ticket->isTicketUsed($vote->id))
 							@if (strtotime($vote->started_at) - strtotime('now') > 0)
-								<div class="col s7 right"><a href="#">@lang('vote.vote_not_started_button')</a></div>
+								{{--<div class="col s7 right"><a href="#">@lang('vote.vote_not_started_button')</a></div>--}}
+								<div class="col s7 right"><a href="{{url('/vote/id/'.$vote->id.'/ticket/'.$ticket->string)}}">尚未开始 可以先选择 不能提交</a></div>
 							@elseif (strtotime($vote->ended_at) - strtotime('now') < 0)
 								<div class="col s7 right"><a href="{{url('/vote/id/'.$vote->id.'/ticket/'.$ticket->string.'/result/')}}">@lang('vote.vote_closed_button')</a></div>
 							@else
