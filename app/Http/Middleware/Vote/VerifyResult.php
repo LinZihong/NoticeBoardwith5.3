@@ -31,7 +31,8 @@ class VerifyResult
 		}
 
 		if ($vote->show_result != 1){
-			return view('vote.thanks'); // Vote result set not shown
+//			return view('vote.thanks'); // Vote result set not shown
+            return "Voted Successfully, but results are not shown.";
 		}
 
 		if (!empty($ticket = Ticket::ticket($request->ticket)) && ($vote->type == 1 || $vote->type == 2)) {
