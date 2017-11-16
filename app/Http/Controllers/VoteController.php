@@ -112,7 +112,8 @@ class VoteController extends Controller
 						$modelAns->saveOrFail();
 					}
 
-					return redirect('/vote/id/' . $voteId . '/result/');
+//					return redirect('/vote/id/' . $voteId . '/result/');
+                    return "Voted successfully, but you cannot view the result now.";
 					break;
 			}
 		} else {
