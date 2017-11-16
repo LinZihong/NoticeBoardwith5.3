@@ -19,6 +19,10 @@ class VerifyResult
 	 */
 	public function handle($request, Closure $next)
 	{
+	    if($request->user->role == 'admin')
+        {
+            return $next($request);
+        }
 		// @TODO Please Check
 		if (empty($request->ticket) && !Auth::check()) {
 			return redirect('/login')->withErrors(['warning' => Lang::get('login.login_required', [
