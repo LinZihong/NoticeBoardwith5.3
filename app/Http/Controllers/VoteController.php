@@ -60,8 +60,9 @@ class VoteController extends Controller
 	public function showIndividualVote(Request $request)
 	{
 		$id = $request->id;
+		// return Vote::find($id)->with('questions', 'questions.options')->first();
 
-		return view('vote.individual')->withVote(Vote::find($id)->with('questions', 'questions.options')->first())->withTicket($request->ticket); //Else show vote page
+		return view('vote.individual')->withVote(Vote::with('questions', 'questions.options')->find($id))->withTicket($request->ticket); //Else show vote page
 	}
 
 	/**
