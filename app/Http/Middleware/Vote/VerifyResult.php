@@ -30,9 +30,11 @@ class VerifyResult
 			return redirect('/error/custom')->withErrors(['warning' => Lang::get('vote.vote_no_found')]); // Vote No Found
 		}
 
+        return "Voted Successfully, but results are not shown.";
+
 		if ($vote->show_result != 1){
 //			return view('vote.thanks'); // Vote result set not shown
-            return "Voted Successfully, but results are not shown.";
+
 		}
 
 		if (!empty($ticket = Ticket::ticket($request->ticket)) && ($vote->type == 1 || $vote->type == 2)) {
