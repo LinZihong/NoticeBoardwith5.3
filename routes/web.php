@@ -35,9 +35,9 @@ Route::get('/post/{id}', 'PostController@showIndividualPost')->where(['id' => '[
 // Vote 区域
 Route::group(['prefix' => 'vote'], function () {
 
-    Route::get('/rrr_secret/1122233', function() {
-       return view('vote.result')->with('vote',Vote::find(2));
-    });
+//    Route::get('/rrr_secret/1122233', function() {
+//       return view('vote.result')->with('vote',Vote::find(2));
+//    });
 
 	Route::group(['middleware' => 'vote_group'], function () {
 		// 访客 Ticket 验证

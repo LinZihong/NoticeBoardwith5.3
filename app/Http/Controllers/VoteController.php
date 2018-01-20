@@ -99,7 +99,6 @@ class VoteController extends Controller
 						$modelAns->saveOrFail();
 					}
 					event(new UpdateModelIPAddress('ticket', $ticket->id, 'vote.ticket', $request->ip()));
-
 					return redirect('/vote/id/' . $voteId . '/ticket/' . $ticket->string . '/result/');
 					break;
 				case 'user':
@@ -111,9 +110,7 @@ class VoteController extends Controller
 						$modelAns->source_type = 'user';
 						$modelAns->saveOrFail();
 					}
-
-//					return redirect('/vote/id/' . $voteId . '/result/');
-                    return "Voted successfully, but you cannot view the result now.";
+					return redirect('/vote/id/' . $voteId . '/result/');
 					break;
 			}
 		} else {
@@ -160,10 +157,6 @@ class VoteController extends Controller
 	public function showVoteResult(request $request)
 	{
 		$voteId = $request->id;
-		if(Vote::find($voteId)->show_result == 0)
-        {
-            return "Voted successfully, but you cannot view the result now.";
-        }
 		return view('vote.result')->with('vote',Vote::Id($voteId));
 	}
 

@@ -19,7 +19,7 @@ class VerifyResult
 	 */
 	public function handle($request, Closure $next)
 	{
-	    if($request->user->role == 'admin')
+	    if(!empty($request->user()) && $request->user()->role == 'admin')
         {
             return $next($request);
         }
